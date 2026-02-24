@@ -1,0 +1,158 @@
+<div class="leaderboard-container">
+
+    <div class="leaderboard-header">
+        <button (click)="backToDashboard()" class="btn-back">← Back</button>
+
+        <h1>Leaderboard</h1>
+
+        <p class="session-title">
+            {{ session()?.nom }}
+        </p>
+    </div>
+
+
+    <div class="leaderboard-content">
+
+        @if (loading()) {
+            <div class="loading-message">
+                <p>Loading leaderboard...</p>
+            </div>
+        }
+
+
+        @if (error() && !loading()) {
+            <div class="error-message">
+                {{ error() }}
+            </div>
+        }
+
+
+        @if (!loading() && leaderboard().length === 0) {
+            <div class="empty-message">
+                <p>No participants in this session yet.</p>
+            </div>
+        }
+
+
+        @if (!loading() && leaderboard().length > 0) {
+
+            <div class="leaderboard-table">
+
+                <div class="leaderboard-item header">
+                    <div class="rank">Rank</div>
+                    <div class="user">Participant</div>
+                    <div class="score">Total Score</div>
+                    <div class="average">Avg Score</div>
+                </div>
+
+
+                @for (entry of leaderboard(); track entry.utilisateur) {
+
+                    @let expanded = selectedEntry() === entry;
+
+                    <div
+                            class="leaderboard-item"
+                            [class.expanded]="expanded"
+                    >
+
+                        <div class="rank">
+                            <span class="medal">{{ medal(entry.rank) }}</span>
+                            #{{ entry.rank }}
+                        </div>
+
+                        <div class="user">
+                            {{ entry.utilisateur }}
+                        </div>
+
+                        <div
+                                class="score"
+                                [style.color]="scoreColor(entry.averageScore)"
+                        >
+                            {{ entry.totalScore | number:'1.2-2' }}
+                        </div>
+
+                        <div class="average">
+
+                            <strong>
+                                {{ entry.averageScore | number:'1.2-2' }}/100
+                            </strong>
+
+                            <button
+                                    (click)="toggleDetails(entry)"
+                                    class="btn-details"
+                            >
+                                {{ expanded ? '▼' : '▶' }}
+                            </button>
+
+                        </div>
+
+
+                        @if (expanded) {
+
+                            <div class="details-section">
+
+                                <div class="details-table">
+
+                                    <div class="details-header">
+                                        <div class="product">Product</div>
+                                        <div class="estimated">Estimated</div>
+                                        <div class="real">Real Price</div>
+                                        <div class="difference">Difference</div>
+                                        <div class="detail-score">Score</div>
+                                    </div>
+
+
+                                    @for (detail of entry.details; track detail.productId) {
+
+                                        <div class="details-row">
+
+                                            <div class="product">
+                                                {{ detail.productName }}
+                                            </div>
+
+                                            <div class="estimated">
+                                                {{ detail.estimatedPrice }} €
+                                            </div>
+
+                                            <div class="real">
+                                                {{ detail.realPrice }} €
+                                            </div>
+
+                                            <div
+                                                    class="difference"
+                                                    [class.exact]="detail.score === 100"
+                                            >
+                                                {{
+                                                    Math.abs(
+                                                        detail.estimatedPrice - detail.realPrice
+                                                    ) | number:'1.2-2'
+                                                }} €
+                                            </div>
+
+                                            <div class="detail-score">
+                        <span [style.color]="scoreColor(detail.score)">
+                          {{ detail.score | number:'1.2-2' }}
+                        </span>
+                                            </div>
+
+                                        </div>
+
+                                    }
+
+                                </div>
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                }
+
+            </div>
+
+        }
+
+    </div>
+
+</div>

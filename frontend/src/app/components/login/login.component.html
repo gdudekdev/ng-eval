@@ -1,0 +1,95 @@
+<div class="login-container">
+    <div class="login-card">
+
+        <h1>DFS Evaluation</h1>
+        <p class="subtitle">Price Estimation Game</p>
+
+        <form (ngSubmit)="onLogin()" class="login-form">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="your@email.com"
+                        required
+                        [ngModel]="email()"
+                        (ngModelChange)="email.set($event)"
+                        [disabled]="loading()"
+                />
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                        required
+                        [ngModel]="password()"
+                        (ngModelChange)="password.set($event)"
+                        [disabled]="loading()"
+                />
+            </div>
+
+
+            <button
+                    type="submit"
+                    class="btn-primary"
+                    [disabled]="loading()"
+            >
+                {{ loading() ? 'Logging in...' : 'Login' }}
+            </button>
+
+        </form>
+
+
+        @if (error()) {
+            <div class="error-message">
+                {{ error() }}
+            </div>
+        }
+
+
+        <div class="demo-section">
+
+            <p class="section-title">Demo Accounts</p>
+
+            <button
+                    type="button"
+                    class="btn-demo admin"
+                    (click)="useDemoUser('a@a.com', 'root')"
+                    [disabled]="loading()"
+            >
+                Admin (a&#64;a.com)
+            </button>
+
+            <button
+                    type="button"
+                    class="btn-demo user"
+                    (click)="useDemoUser('b@b.com', 'azerty')"
+                    [disabled]="loading()"
+            >
+                User 1 (b&#64;b.com)
+            </button>
+
+            <button
+                    type="button"
+                    class="btn-demo user"
+                    (click)="useDemoUser('c@c.com', 'qwerty')"
+                    [disabled]="loading()"
+            >
+                User 2 (c&#64;c.com)
+            </button>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<div class="dashboard-container">
+    <div class="header">
+        <div class="header-content">
+            <h1>DFS Evaluation</h1>
+            <div class="user-info">
+                <span>Welcome, {{ currentUser?.email }}!</span>
+                <button (click)="logout()" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        @if(isAdmin) {
+            <div class="admin-panel">
+                <div class="section-card">
+                    <h2>Create New Session</h2>
+                    <div class="form-group">
+                        <input
+                                type="text"
+                                [ngModel]="newSessionName()"
+                                (ngModelChange)="newSessionName.set($event)"
+                                placeholder="Session name (e.g., DFS 24-25)"
+                                [disabled]="creatingSession()"
+                        />
+                        <button
+                                (click)="createSession()"
+                                [disabled]="creatingSession() || !newSessionName().trim()"
+                                class="btn-primary"
+                        >
+                            {{ creatingSession() ? 'Creating...' : 'Create Session' }}
+                        </button>
+                    </div>
+                    @if(error()) {
+                        <div class="error-message">{{ error() }}</div>
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="sessions-section">
+            <div class="tabs">
+                <button
+                        class="tab"
+                        [class.active]="activeTab() === 'active'"
+                        (click)="switchTab('active')"
+                >
+                    Available Sessions
+                </button>
+                <button
+                        class="tab"
+                        [class.active]="activeTab() === 'history'"
+                        (click)="switchTab('history')"
+                >
+                    History
+                </button>
+            </div>
+
+            @if(activeTab() === 'active') {
+                <h2>Available Sessions</h2>
+
+                @if(sessions().length === 0) {
+                    <div class="empty-message">
+                        <p>No sessions available yet.</p>
+                        @if(!isAdmin) {
+                            <p>Ask an administrator to create a new session.</p>
+                        }
+                    </div>
+                }
+
+                @if(sessions().length > 0) {
+                    <div class="sessions-grid">
+                        @for(session of sessions(); track session.id) {
+                            <div class="session-card">
+                                <div class="session-header">
+                                    <h3>{{ session.nom }}</h3>
+                                    <span class="participants-count">
+                    {{ getParticipantCount(session) }} participants
+                  </span>
+                                </div>
+
+                                <div class="session-details">
+                                    <p><strong>Creator:</strong> {{ session.createur }}</p>
+                                    <p><strong>Products:</strong> {{ session.produits.length }}</p>
+                                    <p><strong>Created:</strong> {{ session.created_at | date: 'short' }}</p>
+                                </div>
+
+                                <div class="session-actions">
+                                    <button
+                                            (click)="joinSession(session.id)"
+                                            class="btn-join"
+                                    >
+                                        Join Session
+                                    </button>
+                                    <button
+                                            (click)="viewLeaderboard(session.id)"
+                                            class="btn-leaderboard"
+                                    >
+                                        View Leaderboard
+                                    </button>
+                                    @if(isAdmin) {
+                                        <button
+                                                (click)="closeSession(session.id)"
+                                                [disabled]="closingSessionId() === session.id"
+                                                class="btn-close"
+                                        >
+                                            Close Session
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+            @if(activeTab() === 'history') {
+                <h2>Closed Sessions</h2>
+
+                @if(closedSessions().length === 0) {
+                    <div class="empty-message">
+                        <p>No closed sessions yet.</p>
+                    </div>
+                }
+
+                @if(closedSessions().length > 0) {
+                    <div class="sessions-grid">
+                        @for(session of closedSessions(); track session.id) {
+                            <div class="session-card closed">
+                                <div class="session-header">
+                                    <h3>{{ session.nom }}</h3>
+                                    <span class="participants-count">
+                    {{ getParticipantCount(session) }} participants
+                  </span>
+                                </div>
+
+                                <div class="session-details">
+                                    <p><strong>Creator:</strong> {{ session.createur }}</p>
+                                    <p><strong>Products:</strong> {{ session.produits.length }}</p>
+                                    <p><strong>Created:</strong> {{ session.created_at | date: 'short' }}</p>
+                                    <p><strong>Status:</strong> <span class="closed-badge">Closed</span></p>
+                                </div>
+
+                                <div class="session-actions">
+                                    <button
+                                            (click)="viewLeaderboard(session.id)"
+                                            class="btn-leaderboard"
+                                    >
+                                        View Results
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

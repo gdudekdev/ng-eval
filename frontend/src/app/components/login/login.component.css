@@ -1,0 +1,117 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.login-card {
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #999;
+  margin-bottom: 1.5rem;
+}
+
+.login-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: #0084d4;
+  border: none;
+  padding: 0.8rem;
+}
+
+.btn-primary:hover {
+  background-color: #0073c0;
+}
+
+.error-message {
+  color: #ff6b6b;
+  background-color: #3a2a2a;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.demo-section {
+  border-top: 1px solid #333;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.section-title {
+  text-align: center;
+  color: #888;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+
+.btn-demo {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  border: 1px solid #444;
+  color: #66b3ff;
+}
+
+.btn-demo:hover {
+  background-color: #2a2a2a;
+  border-color: #66b3ff;
+}
+
+.btn-demo.admin {
+  color: #ffa500;
+  border-color: #666;
+}
+
+.btn-demo.admin:hover {
+  border-color: #ffa500;
+}
+
+.btn-demo.user {
+  color: #66b3ff;
+  border-color: #444;
+}
+
+.btn-demo.user:hover {
+  border-color: #66b3ff;
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    padding: 1.5rem;
+  }
+}
+

@@ -1,0 +1,250 @@
+.session-container {
+  min-height: 100vh;
+}
+
+.session-header {
+  background-color: #222;
+  border-bottom: 1px solid #333;
+  padding: 1.5rem 0;
+}
+
+.session-header h1 {
+  margin: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+.btn-back {
+  background-color: transparent;
+  border: 1px solid #555;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem 1rem 1rem;
+}
+
+.btn-back:hover {
+  background-color: #2a2a2a;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #333;
+  margin: 1rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #66b3ff, #4a9fd8);
+  width: 0;
+}
+
+.progress-text {
+  max-width: 1200px;
+  margin: 0.5rem auto 0;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.session-content {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.loading-message,
+.finished-message {
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+}
+
+.finished-message h2 {
+  color: #66b3ff;
+  margin-top: 0;
+}
+
+.question-section {
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.product-card {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.product-image {
+  margin-bottom: 1rem;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 6px;
+}
+
+.product-info h2 {
+  margin: 1rem 0 0.5rem 0;
+}
+
+.product-description {
+  color: #999;
+}
+
+.input-section,
+.result-section {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.price-input-group {
+  margin-bottom: 1rem;
+}
+
+.price-input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.price-input {
+  width: 100%;
+}
+
+.currency {
+  position: absolute;
+  right: 1rem;
+  top: 0.6rem;
+  color: #999;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.result-header h3 {
+  margin: 0;
+  color: #ccc;
+}
+
+.estimated-price {
+  color: #66b3ff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.price-comparison {
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comparison-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #999;
+}
+
+.comparison-item .value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.comparison-item .value.correct {
+  color: #66b3ff;
+}
+
+.score-display {
+  text-align: center;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.score-display h3 {
+  margin: 0 0 1rem 0;
+}
+
+.score-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #66b3ff, #4a9fd8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.score-value {
+  font-size: 2rem;
+}
+
+.score-unit {
+  font-size: 0.8rem;
+}
+
+.btn-submit,
+.btn-next,
+.btn-primary,
+.btn-secondary {
+  background-color: #0084d4;
+  border: none;
+  width: 100%;
+  padding: 0.8rem;
+}
+
+.btn-submit:hover,
+.btn-next:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: #0073c0;
+}
+
+.btn-submit:disabled,
+.btn-next:disabled {
+  background-color: #2a2a2a;
+  color: #666;
+}
+
+.error-message {
+  color: #ff6b6b;
+  background-color: #3a2a2a;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .product-image img {
+    max-height: 250px;
+  }
+}
+
